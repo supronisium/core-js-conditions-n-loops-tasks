@@ -21,10 +21,9 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
-
 /**
  * Returns the maximum of three numbers without using Array and Math classes methods.
  *
@@ -38,10 +37,15 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a >= b && a >= c) {
+    return a;
+  }
+  if (b >= c) {
+    return b;
+  }
+  return c;
 }
-
 /**
  * Checks if a queen can capture a king in the next move on an 8x8 chessboard.
  * See more details at https://en.wikipedia.org/wiki/Queen_(chess)
@@ -60,10 +64,13 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  return (
+    queen.x === king.x ||
+    queen.y === king.y ||
+    Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)
+  );
 }
-
 /**
  * Determines whether a triangle is isosceles based on its side lengths.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -82,10 +89,11 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a <= 0 || b <= 0 || c <= 0) return false;
+  if (a + b <= c || a + c <= b || b + c <= a) return false;
+  return a === b || b === c || a === c;
 }
-
 /**
  * Converts a number to Roman numerals. The number will be between 1 and 39.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -100,10 +108,51 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const currentNumbber = {
+    1: 'I',
+    2: 'II',
+    3: 'III',
+    4: 'IV',
+    5: 'V',
+    6: 'VI',
+    7: 'VII',
+    8: 'VIII',
+    9: 'IX',
+    10: 'X',
+    11: 'XI',
+    12: 'XII',
+    13: 'XIII',
+    14: 'XIV',
+    15: 'XV',
+    16: 'XVI',
+    17: 'XVII',
+    18: 'XVIII',
+    19: 'XIX',
+    20: 'XX',
+    21: 'XXI',
+    22: 'XXII',
+    23: 'XXIII',
+    24: 'XXIV',
+    25: 'XXV',
+    26: 'XXVI',
+    27: 'XXVII',
+    28: 'XXVIII',
+    29: 'XXIX',
+    30: 'XXX',
+    31: 'XXXI',
+    32: 'XXXII',
+    33: 'XXXIII',
+    34: 'XXXIV',
+    35: 'XXXV',
+    36: 'XXXVI',
+    37: 'XXXVII',
+    38: 'XXXVIII',
+    39: 'XXXIX',
+    40: 'XXXX',
+  };
+  return currentNumbber[num];
 }
-
 /**
  * Converts a number to a string, replacing digits with words.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -119,8 +168,58 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let toWord = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    const char = numberStr[i];
+    switch (char) {
+      case '0':
+        toWord += 'zero';
+        break;
+      case '1':
+        toWord += 'one';
+        break;
+      case '2':
+        toWord += 'two';
+        break;
+      case '3':
+        toWord += 'three';
+        break;
+      case '4':
+        toWord += 'four';
+        break;
+      case '5':
+        toWord += 'five';
+        break;
+      case '6':
+        toWord += 'six';
+        break;
+      case '7':
+        toWord += 'seven';
+        break;
+      case '8':
+        toWord += 'eight';
+        break;
+      case '9':
+        toWord += 'nine';
+        break;
+      case '-':
+        toWord += 'minus';
+        break;
+      case '.':
+        toWord += 'point';
+        break;
+      case ',':
+        toWord += 'point';
+        break;
+      default:
+        toWord += '';
+    }
+    if (i !== numberStr.length - 1) {
+      toWord += ' ';
+    }
+  }
+  return toWord;
 }
 
 /**
@@ -135,10 +234,13 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let rightToLeft = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    rightToLeft += str[i];
+  }
+  return str === rightToLeft;
 }
-
 /**
  * Finds the first occurrence of a letter in a string.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -153,8 +255,13 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -172,10 +279,13 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const digitNum = String(num);
+  for (let i = 0; i < digitNum.length; i += 1) {
+    if (+digitNum[i] === digit) return true;
+  }
+  return false;
 }
-
 /**
  * Finds the index of an element in an array where the sum of elements to the left equals the sum of elements to the right.
  * If such an index does not return -1.
@@ -189,10 +299,25 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  if (arr.length < 3) {
+    return -1;
+  }
+  let firstNum = 0;
+  let secondNum = 0;
+  let thirdNum = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    firstNum += arr[i];
+  }
+  for (let i = 0; i < arr.length - 1; i += 1) {
+    secondNum += arr[i];
+    thirdNum = firstNum - arr[i + 1] - secondNum;
+    if (secondNum === thirdNum) {
+      return i + 1;
+    }
+  }
+  return -1;
 }
-
 /**
  * Generates a spiral matrix of a given size, filled with numbers in ascending order starting from one.
  * The direction of filling with numbers is clockwise.
@@ -251,10 +376,20 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const n = arr.length;
+  const newAr = arr;
+  for (let i = 1; i < n; i += 1) {
+    const current = newAr[i];
+    let j = i - 1;
+    while (j >= 0 && newAr[j] > current) {
+      newAr[j + 1] = newAr[j];
+      j -= 1;
+    }
+    newAr[j + 1] = current;
+  }
+  return newAr;
 }
-
 /**
  * Shuffles characters in a string so that the characters with an odd index are moved to the end of the string at each iteration.
  * Take into account that the string can be very long and the number of iterations is large. Consider how you can optimize your solution.
